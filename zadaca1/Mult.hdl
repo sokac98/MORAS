@@ -1,0 +1,63 @@
+CHIP Mult
+{
+    IN a[16], b[16];
+    OUT out[16];
+
+    PARTS:
+
+    Add16(a = a ,b = a ,out= out1 );
+    Add16(a = out1 ,b = out1 ,out= out2 );
+    Add16(a = out2 ,b = out2 ,out= out3 );
+    Add16(a = out3 ,b = out3 ,out= out4 );
+    Add16(a = out4 ,b = out4 ,out= out5 );
+    Add16(a = out5 ,b = out5 ,out= out6 );
+    Add16(a = out6 ,b = out6 ,out= out7 );
+    Add16(a = out7 ,b = out7 ,out= out8 );
+    Add16(a = out8 ,b = out8 ,out= out9 );
+    Add16(a = out9 ,b = out9 ,out= out10 );
+    Add16(a = out10 ,b = out10 ,out= out11 );
+    Add16(a = out11 ,b = out11 ,out= out12 );
+    Add16(a = out12,b = out12 ,out= out13 );
+    Add16(a = out13 ,b = out13 ,out= out14 );
+    Add16(a = out14 ,b = out14 ,out= out15 );
+    Add16(a = out15 ,b = out15 ,out= out16 );
+
+    
+    Mux16(a= false ,b=a ,sel = b[0], out = o1 );
+    Mux16(a= false,b= out1,sel = b[1], out = o2 );
+    Mux16(a= false,b= out2,sel = b[2], out = o3 );
+    Mux16(a= false,b= out3,sel = b[3], out = o4 );
+    Mux16(a= false,b= out4,sel = b[4], out = o5 );
+    Mux16(a= false,b= out5,sel = b[5], out = o6 );
+    Mux16(a= false,b= out6,sel = b[6], out = o7 );
+    Mux16(a= false,b= out7,sel = b[7], out = o8 );
+    Mux16(a= false,b= out8,sel = b[8], out = o9 );
+    Mux16(a= false,b= out9,sel = b[9], out = o10 );
+    Mux16(a= false,b= out10,sel = b[10], out = o11 );
+    Mux16(a= false,b= out11,sel = b[11], out = o12 );
+    Mux16(a= false,b= out12,sel = b[12], out = o13 );
+    Mux16(a= false,b= out13,sel = b[13], out = o14 );
+    Mux16(a= false,b= out14,sel = b[14], out = o15 );
+    Mux16(a= false,b= out15,sel = b[15], out = o16 );
+
+     
+    Add16(a = o1, b = o2, out = r1);
+    Add16(a = o3, b = o4, out = r2);
+    Add16(a = o5, b = o6, out = r3);
+    Add16(a = o7, b = o8, out = r4);
+    Add16(a = o9, b = o10, out = r5);
+    Add16(a = o11, b = o12, out = r6);
+    Add16(a = o13, b = o14, out = r7);
+    Add16(a = o15, b = o16, out = r8);
+
+    Add16(a = r1, b = r2, out = r12);
+    Add16(a = r3, b = r4, out = r34);
+    Add16(a = r5, b = r6, out = r56);
+    Add16(a = r7, b = r8, out = r78);
+
+    Add16(a = r12, b = r34, out = outA);
+    Add16(a = r56, b = r78, out = outB);
+
+    Add16(a = outA, b = outB, out = out);
+
+}
